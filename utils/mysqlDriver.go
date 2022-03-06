@@ -21,5 +21,5 @@ func InitDB(config *config.AppConfig) *gorm.DB {
 }
 
 func InitialMigrate(db *gorm.DB) {
-	db.AutoMigrate(&entity.Tag{})
+	db.AutoMigrate(&entity.Tag{}, &entity.News{})
 }
