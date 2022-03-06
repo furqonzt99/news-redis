@@ -2,6 +2,7 @@ package utils
 
 import (
 	config "github.com/furqonzt99/news-redis/configs"
+	"github.com/furqonzt99/news-redis/domain/entity"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -20,5 +21,5 @@ func InitDB(config *config.AppConfig) *gorm.DB {
 }
 
 func InitialMigrate(db *gorm.DB) {
-
+	db.AutoMigrate(&entity.Tag{})
 }
