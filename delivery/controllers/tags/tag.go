@@ -23,7 +23,7 @@ func NewTagController(tagRepository repository.TagInterface) *TagController {
 }
 
 func (tc TagController) Create(c echo.Context) error {
-	var tagRequest tagRequest
+	var tagRequest TagRequest
 
 	c.Bind(&tagRequest)
 
@@ -47,7 +47,7 @@ func (tc TagController) Create(c echo.Context) error {
 
 func (tc TagController) ReadAll(c echo.Context) error {
 
-	response := []tagResponse{}
+	response := []TagResponse{}
 
 	// get data from cache
 	newsCache, err := services.GetCache(tagEntity, 0, "")
@@ -63,7 +63,7 @@ func (tc TagController) ReadAll(c echo.Context) error {
 	}
 
 	for _, tag := range tagsDB {
-		response = append(response, tagResponse{
+		response = append(response, TagResponse{
 			ID:   int(tag.ID),
 			Name: tag.Name,
 		})
@@ -84,7 +84,7 @@ func (tc TagController) Edit(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, common.NewBadRequestResponse())
 	}
 
-	var tagRequest tagRequest
+	var tagRequest TagRequest
 
 	c.Bind(&tagRequest)
 

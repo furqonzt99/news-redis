@@ -24,7 +24,7 @@ func NewNewsController(repository repository.NewsInterface) *NewsController {
 }
 
 func (nc NewsController) Create(c echo.Context) error {
-	var newsRequest createNewsRequest
+	var newsRequest CreateNewsRequest
 
 	c.Bind(&newsRequest)
 
@@ -148,7 +148,7 @@ func (nc NewsController) Edit(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, common.NewBadRequestResponse())
 	}
 
-	var newsRequest updateNewsRequest
+	var newsRequest UpdateNewsRequest
 
 	c.Bind(&newsRequest)
 

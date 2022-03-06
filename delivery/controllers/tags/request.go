@@ -1,5 +1,5 @@
 package tags
 
-type tagRequest struct {
+type TagRequest struct {
 	Name string `json:"name" validate:"required"`
 }
