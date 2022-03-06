@@ -54,7 +54,7 @@ func (tc TagController) ReadAll(c echo.Context) error {
 	if err == nil {
 		// Unmarshal response
 		_ = json.Unmarshal([]byte(newsCache), &response)
-		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "cache"))
 	}
 
 	tagsDB, err := tc.Repository.ReadAll()
@@ -75,7 +75,7 @@ func (tc TagController) ReadAll(c echo.Context) error {
 	// Create cache
 	go services.CreateCache(tagEntity, 0, "", resMarshal)
 
-	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "database"))
 }
 
 func (tc TagController) Edit(c echo.Context) error {

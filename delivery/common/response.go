@@ -9,13 +9,15 @@ type DefaultResponse struct {
 type ResponseSuccess struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`
+	Source  string      `json:"source"`
 	Data    interface{} `json:"data"`
 }
 
-func SuccessResponseWithData(data interface{}) ResponseSuccess {
+func SuccessResponseWithData(data interface{}, source string) ResponseSuccess {
 	return ResponseSuccess{
 		Code:    200,
 		Message: "Successful Operation",
+		Source:  source,
 		Data:    data,
 	}
 }

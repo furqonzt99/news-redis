@@ -61,7 +61,7 @@ func (nc NewsController) ReadAll(c echo.Context) error {
 	if err == nil {
 		// Unmarshal response
 		_ = json.Unmarshal([]byte(newsCache), &response)
-		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "cache"))
 	}
 
 	newsDB, err := nc.Repository.ReadAll(newsFilter)
@@ -94,7 +94,7 @@ func (nc NewsController) ReadAll(c echo.Context) error {
 	// Create cache
 	go services.CreateCache(newsEntity, 0, newsFilter, resMarshal)
 
-	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "database"))
 }
 
 func (nc NewsController) ReadOne(c echo.Context) error {
@@ -111,7 +111,7 @@ func (nc NewsController) ReadOne(c echo.Context) error {
 	if err == nil {
 		// Unmarshal response
 		_ = json.Unmarshal([]byte(newsCache), &response)
-		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+		return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "cache"))
 	}
 
 	newsDB, err := nc.Repository.ReadOne(newsID)
@@ -139,7 +139,7 @@ func (nc NewsController) ReadOne(c echo.Context) error {
 	// Create cache
 	go services.CreateCache(newsEntity, newsID, "", resMarshal)
 
-	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response))
+	return c.JSON(http.StatusOK, common.SuccessResponseWithData(response, "database"))
 }
 
 func (nc NewsController) Edit(c echo.Context) error {
