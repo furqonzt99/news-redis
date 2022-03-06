@@ -3,6 +3,7 @@ package main
 import (
 	config "github.com/furqonzt99/news-redis/configs"
 	"github.com/furqonzt99/news-redis/delivery/common"
+	"github.com/furqonzt99/news-redis/delivery/controllers/news"
 	"github.com/furqonzt99/news-redis/delivery/controllers/tags"
 	"github.com/furqonzt99/news-redis/delivery/middlewares"
 	"github.com/furqonzt99/news-redis/delivery/routes"
@@ -36,12 +37,15 @@ func main() {
 
 	// repository
 	tr := repository.NewTagRepository(db)
+	nr := repository.NewNewsRepository(db)
 
 	// controller
 	tc := tags.NewTagController(tr)
+	nc := news.NewNewsController(nr)
 
 	// routes
 	routes.RegisterTagPath(e, tc)
+	routes.RegisterNewsPath(e, nc)
 
 	e.Logger.Fatal(e.Start(":" + config.Port))
 }
