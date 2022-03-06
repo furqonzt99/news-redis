@@ -2,6 +2,7 @@ package main
 
 import (
 	config "github.com/furqonzt99/news-redis/configs"
+	"github.com/furqonzt99/news-redis/constants"
 	"github.com/furqonzt99/news-redis/delivery/common"
 	"github.com/furqonzt99/news-redis/delivery/controllers/news"
 	"github.com/furqonzt99/news-redis/delivery/controllers/tags"
@@ -20,6 +21,8 @@ func main() {
 	db := utils.InitDB(config)
 
 	utils.InitialMigrate(db)
+
+	constants.Rdb = utils.InitRedis(config)
 
 	e := echo.New()
 
