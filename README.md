@@ -13,3 +13,44 @@ News and Topic management
 ## API Documentation
 
 - [News and Topic management](https://app.swaggerhub.com/apis-docs/furqonzt99/newsapi/1) - Swagger API Documentation
+
+## Installation
+
+- Clone this project
+
+```
+git clone https://github.com/furqonzt99/news-redis.git news-redis
+```
+
+- Go to project folder
+
+```
+cd news-redis
+```
+
+- Install dependencies
+
+```
+go mod tidy
+```
+
+- Dont Forget to setup .env file on project folder and run this command
+
+```
+go run .
+```
+
+## Testing
+
+- Dont Forget to setup .env file on test folder and run this command
+
+```
+go test -p 1 -v ./test
+```
+
+![Test Result](https://github.com/furqonzt99/news-redis/blob/main/docs/test.png)
+
+## Caching Strategies
+
+![Caching Strategis 1](https://github.com/furqonzt99/news-redis/blob/main/docs/cs1.png)
+![Caching Strategis 2](https://github.com/furqonzt99/news-redis/blob/main/docs/cs2.png)
